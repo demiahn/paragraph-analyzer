@@ -36,7 +36,7 @@ class ParagraphAnalyzer:
 
                 # Pronouns have -PROUN- as lemma so we keep their text name
                 if token.lemma_ == "-PRON-":
-                    word = token.text
+                    word = token.text.lower()
                 else:
                     word = token.lemma_
 

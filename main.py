@@ -1,8 +1,8 @@
 from analyzer.paragraph_analyzer import ParagraphAnalyzer
 
-paragraphAnalyzer = ParagraphAnalyzer()
+paragraph_analyzer = ParagraphAnalyzer()
 
-paragraphAnalyzer.excluded_words = ["a", "the", "and", "of", "in", "be", "also", "as"]
+paragraph_analyzer.excluded_words = ["a", "the", "and", "of", "in", "be", "also", "as"]
 
 text = "uTake this paragraph of text and return an alphabetized list of ALL unique words." \
        "  A unique word is any form of a word often communicated with essentially the same meaning." \
@@ -12,8 +12,8 @@ text = "uTake this paragraph of text and return an alphabetized list of ALL uniq
        " The following words should not be included in your analysis or result set: \"a\", \"the\", \"and\", \"of\", \"in\", \"be\", \"also\" and \"as\"." \
        "  Your final result MUST be displayed in a readable console output in the same format as the JSON sample object shown below."
 
-words = paragraphAnalyzer.get_unique_words(text)
+words = paragraph_analyzer.get_unique_words(text)
 
-json_result = paragraphAnalyzer.convert_words_dictionary_to_json(words)
+json_result = paragraph_analyzer.convert_words_dictionary_to_json(words)
 
 print(json_result)
