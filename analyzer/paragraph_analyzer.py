@@ -34,11 +34,7 @@ class ParagraphAnalyzer:
 
             if token.pos_ not in self._excluded_part_of_speech and token.lemma_ not in self._excluded_words:
 
-                # Pronouns have -PROUN- as lemma so we keep their text name
-                if token.lemma_ == "-PRON-":
-                    word = token.text.lower()
-                else:
-                    word = token.lemma_
+                word = self.__get_word_from_token(token)
 
                 if word in words:
                     words[word]["total-occurrences"] += 1
@@ -47,6 +43,17 @@ class ParagraphAnalyzer:
                     words[word] = {"total-occurrences": 1, "sentence-indexes": set([sentence])}
 
         return words
+
+    def __get_word_from_token(self, token):
+        """Returns the word from the spacy token"""
+        # Pronouns have -PROUN- as lemma so we keep their text name
+        if token.lemma_ == "-PRON-":
+            return token.text.lower()
+
+        if token.pos_ == "NOUN":
+            return token.lemma_
+
+        return token.text
 
     def convert_words_dictionary_to_json(self, words):
         """ Converts a words dictionary to json format"""
